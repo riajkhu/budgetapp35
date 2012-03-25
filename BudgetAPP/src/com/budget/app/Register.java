@@ -48,7 +48,7 @@ private DatabaseConnection datasource;
 				
 			}
 		});
-		clearButton =(Button) findViewById(R.id.clearButton);
+		//clearButton =(Button) findViewById(R.id.clearButton);
 		
 		
 		
