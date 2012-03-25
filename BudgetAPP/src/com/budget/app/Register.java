@@ -22,16 +22,17 @@ Button clearButton;
 TextView dateText;
 TextView expenseText;
 Spinner categorySpinner;
-private DatabaseConnection datasource;
+private DatabaseConnection datasource = new DatabaseConnection(this);
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		datasource = new DatabaseConnection(this);
-		datasource.open();
 		
+		
+		datasource.open();
 		saveButton =(Button) findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -40,8 +41,9 @@ private DatabaseConnection datasource;
 				dateText =(TextView) findViewById(R.id.dateField);
 				String date = dateText.getText().toString();
 				expenseText = (TextView) findViewById(R.id.expenseField);
-				String expense = expenseText.getText().toString();
+			    String expense = expenseText.getText().toString();
 				categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+				String spinner = categorySpinner.getAdapter().toString();
 				
 
 				// TODO Auto-generated method stub

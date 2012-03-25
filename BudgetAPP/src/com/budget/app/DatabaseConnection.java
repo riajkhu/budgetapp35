@@ -40,8 +40,9 @@ public class DatabaseConnection {
 	 * uses the ContentValues class by creating the object cValues. cValues object is used for putting the values in different columns
 	 * db object uses the insert method to insert the table and the values inside the table to the database
 	 */
-	public void addData(String date,String category,String expense){
+	public void addData(String date,String category,String expense,String id){
 		ContentValues cValues = new ContentValues();
+		cValues.put(dbHelper.COLUMN_ID, id);
 		cValues.put(dbHelper.COLUMN_DATE, date);
 		cValues.put(dbHelper.COLUMN_TYPE, category);
 		cValues.put(dbHelper.COLUMN_EXPENSE, expense);
