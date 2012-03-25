@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Welcome to the budget app</string>
+    <string name="app_name">BudgetAPP</string>
+    <string name="date">Enter the date</string>
+    <string name="expense">Enter the expense</string>
+    <string-array name="option">
+        <item>Food</item>
+         <item>Transport</item>
+         <item>Housing</item>
+         <item>Hobby</item>
+        
+    </string-array>
+</resources>
