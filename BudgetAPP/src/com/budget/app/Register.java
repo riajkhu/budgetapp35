@@ -42,8 +42,8 @@ private DatabaseConnection datasource = new DatabaseConnection(this);
 				String date = dateText.getText().toString();
 				expenseText = (TextView) findViewById(R.id.expenseField);
 			    String expense = expenseText.getText().toString();
-				categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
-				String spinner = categorySpinner.getAdapter().toString();
+				//categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+				//String spinner = categorySpinner.getAdapter().toString();
 				
 
 				// TODO Auto-generated method stub
@@ -54,15 +54,17 @@ private DatabaseConnection datasource = new DatabaseConnection(this);
 		
 		
 		
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				this, R.array.option,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		categorySpinner.setAdapter(adapter);
+		  
+		 categorySpinner  = (Spinner) findViewById(R.id.categorySpinner);
+			ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+					this, R.array.option, android.R.layout.simple_spinner_item);
+			
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			categorySpinner.setAdapter(adapter);
 
-		// listener if you need one
-		categorySpinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
-		
+			// listener if you need one
+			categorySpinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+			
 		
 		
 	}
