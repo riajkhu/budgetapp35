@@ -19,10 +19,11 @@ import android.widget.Toast;
 public class Register extends Activity {
 Button saveButton;
 Button clearButton;
+Button showDataButton;
 TextView dateText;
 TextView expenseText;
 Spinner categorySpinner;
-private DatabaseConnection datasource = new DatabaseConnection(this);
+private DatabaseConnection dataSource = new DatabaseConnection(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +33,56 @@ private DatabaseConnection datasource = new DatabaseConnection(this);
 		setContentView(R.layout.main);
 		
 		
-		datasource.open();
+		dataSource.open();
+		
+		dateText =(TextView) findViewById(R.id.dateField);
+		expenseText = (TextView) findViewById(R.id.expenseField);
+		categorySpinner  = (Spinner) findViewById(R.id.categorySpinner);
+		
+		//code for clearButton;
+		clearButton =(Button) findViewById(R.id.clearButton);
+		clearButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dateText.setText("");
+				expenseText.setText("");
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
+		//code for showDataButton.
+		showDataButton = (Button) findViewById(R.id.getButton);
+		showDataButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setContentView(R.layout.budget);
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		//code for the save button
 		saveButton =(Button) findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				dateText =(TextView) findViewById(R.id.dateField);
 				String date = dateText.getText().toString();
-				expenseText = (TextView) findViewById(R.id.expenseField);
+			    dataSource.addDate(date);
+			
+				
+				
 			    String expense = expenseText.getText().toString();
+			    dataSource.addExpense(expense);
+			    
+			    String category = categorySpinner.getAdapter().toString();
+			    dataSource.addCategory(category);
+			    
+			   
 				//categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
 				//String spinner = categorySpinner.getAdapter().toString();
 				
@@ -50,12 +91,13 @@ private DatabaseConnection datasource = new DatabaseConnection(this);
 				
 			}
 		});
-		clearButton =(Button) findViewById(R.id.clearButton);
+		
 		
 		
 		
 		  
-		 categorySpinner  = (Spinner) findViewById(R.id.categorySpinner);
+		
+		 
 			ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 					this, R.array.option, android.R.layout.simple_spinner_item);
 			

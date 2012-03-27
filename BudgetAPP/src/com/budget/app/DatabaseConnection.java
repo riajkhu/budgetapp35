@@ -17,7 +17,7 @@ public class DatabaseConnection {
 	public SQLiteDatabase db;
 	// creating a array for saving the  columns
 	public String[] columns = {dbHelper.COLUMN_ID,dbHelper.COLUMN_DATE,dbHelper.COLUMN_EXPENSE,dbHelper.COLUMN_TYPE}; 
-	
+	ContentValues cValues = new ContentValues();
 	//constructor of DatabaseConnection contaning a dbHelper object 
 	public DatabaseConnection(Context con){
 		dbHelper = new MySQLiteHelper(con);
@@ -40,12 +40,38 @@ public class DatabaseConnection {
 	 * uses the ContentValues class by creating the object cValues. cValues object is used for putting the values in different columns
 	 * db object uses the insert method to insert the table and the values inside the table to the database
 	 */
-	public void addData(String date,String category,String expense,String id){
-		ContentValues cValues = new ContentValues();
-		cValues.put(dbHelper.COLUMN_ID, id);
+	public void addDate(String date){
+		
+		
 		cValues.put(dbHelper.COLUMN_DATE, date);
+		
+		
+		db.insert(dbHelper.TABLE_NAME, null, cValues);
+		
+		
+		
+	}
+	public void addCategory(String category){
+		
 		cValues.put(dbHelper.COLUMN_TYPE, category);
+		
+		db.insert(dbHelper.TABLE_NAME, null, cValues);
+		
+		
+		
+	}
+	public void addExpense(String expense){
+		
 		cValues.put(dbHelper.COLUMN_EXPENSE, expense);
+		db.insert(dbHelper.TABLE_NAME, null, cValues);
+		
+		
+		
+	}
+	public void addId(String id){
+		
+		cValues.put(dbHelper.COLUMN_ID, id);
+		
 		db.insert(dbHelper.TABLE_NAME, null, cValues);
 		
 		

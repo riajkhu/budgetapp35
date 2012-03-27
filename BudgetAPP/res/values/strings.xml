@@ -6,6 +6,7 @@
     <string name="date">Enter the date</string>
     <string name="expense">Enter the expense</string>
     <string-array name="option">
+        <item>Select</item>
         <item>Food</item>
          <item>Transport</item>
          <item>Housing</item>
