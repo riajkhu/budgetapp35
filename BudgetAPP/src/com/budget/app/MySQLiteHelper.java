@@ -9,7 +9,7 @@ import android.util.Log;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 	//decleared the table name,column names,database name and database version
 	public static final String TABLE_NAME ="bud_app";
-	public static final String COLUMN_ID ="id";
+	//public static final String COLUMN_ID ="id";
 	public static final String COLUMN_DATE="date";
 	public static final String COLUMN_TYPE ="category";
 	public static final String COLUMN_EXPENSE ="expense"; 
@@ -17,8 +17,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final int DATABASE_VERSION =1;
 	
 	//created a database with the table contents
-	public static final String DATABASE_CREATE = "CREATE TABLE"+ TABLE_NAME+"("+ COLUMN_ID+
-			"an incremented integer"+COLUMN_DATE+" DATE"+COLUMN_TYPE+"CATEGORY OF EXPENSE" + COLUMN_EXPENSE+"EXPENSE);";
+	public static final String DATABASE_CREATE = "CREATE TABLE"+ TABLE_NAME+ "(" + COLUMN_DATE+" TEXT NOT NULL, "+ COLUMN_TYPE +" TEXT NOT NULL, " + COLUMN_EXPENSE +"TEXT NOT NULL );";
+	
+	
 //used constructor with context to create the database
 	//context is used for creating or opening database
 	public MySQLiteHelper(Context context) {

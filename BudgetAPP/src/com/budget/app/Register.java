@@ -4,6 +4,7 @@ package com.budget.app;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -33,7 +34,7 @@ private DatabaseConnection dataSource = new DatabaseConnection(this);
 		setContentView(R.layout.main);
 		
 		
-		dataSource.open();
+		
 		
 		dateText =(TextView) findViewById(R.id.dateField);
 		expenseText = (TextView) findViewById(R.id.expenseField);
@@ -45,6 +46,7 @@ private DatabaseConnection dataSource = new DatabaseConnection(this);
 			
 			@Override
 			public void onClick(View v) {
+				
 				dateText.setText("");
 				expenseText.setText("");
 				// TODO Auto-generated method stub
@@ -60,6 +62,12 @@ private DatabaseConnection dataSource = new DatabaseConnection(this);
 			@Override
 			public void onClick(View v) {
 				setContentView(R.layout.budget);
+				TextView budgetView = (TextView) findViewById(R.id.budgetView);
+				//dataSource.open();
+				//String data = dataSource.getData();
+				
+				//dataSource.close();
+				//budgetView.setText(data);
 				// TODO Auto-generated method stub
 				
 			}
@@ -72,15 +80,20 @@ private DatabaseConnection dataSource = new DatabaseConnection(this);
 			@Override
 			public void onClick(View v) {
 				String date = dateText.getText().toString();
-			    dataSource.addDate(date);
+				Log.i("This is date", date);
+				String expense = expenseText.getText().toString();
+				Log.i("The expense is", expense);
+				String category = categorySpinner.getSelectedItem().toString();
+				Log.i("This is category", category);
+				dataSource.open();
+			    
+				dataSource.addData(date, category, expense);
+			    
+			    dataSource.close();
 			
 				
 				
-			    String expense = expenseText.getText().toString();
-			    dataSource.addExpense(expense);
 			    
-			    String category = categorySpinner.getAdapter().toString();
-			    dataSource.addCategory(category);
 			    
 			   
 				//categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
@@ -111,7 +124,7 @@ private DatabaseConnection dataSource = new DatabaseConnection(this);
 		
 	}
 	public class MyOnItemSelectedListener implements OnItemSelectedListener {
-
+/*
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
 				long id) {
 
@@ -122,8 +135,35 @@ private DatabaseConnection dataSource = new DatabaseConnection(this);
 					Toast.LENGTH_LONG).show();
 	
 		}
-
+*/
+		public void DisplayNotice(String notice) 
+	    { 
+	        Toast.makeText(Register.this, 
+	                notice, 
+	                Toast.LENGTH_LONG).show(); 
+	    } 
+	    public void onItemSelected(AdapterView parent, View v, int 
+	position, long id) { 
+	        switch (position) { 
+	        case 0: 
+	                DisplayNotice(parent.getSelectedItem().toString()); 
+	            break; 
+	        case 1: 
+	                DisplayNotice(parent.getSelectedItem().toString()); 
+	            break; 
+	        case 2: 
+	                DisplayNotice(parent.getSelectedItem().toString()); 
+	            break; 
+	        default: 
+	                DisplayNotice(parent.getSelectedItem().toString()); 
+	            break; 
+	        } 
+	    } 
+		
+		
 		public void onNothingSelected(AdapterView parent) {
+			
+			
 			// Do nothing.
 		}
 	}

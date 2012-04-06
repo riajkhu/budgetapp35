@@ -18,26 +18,7 @@ public class ProgressBarActivity extends Activity {
 		setContentView(R.layout.progressbar);
 		
 		foodBar=(ProgressBar) findViewById(R.id.foodBar);
-		 new Thread(new Runnable() {
-             public void run() {
-                 while (mProgressStatus < 100) {
-                     mProgressStatus = doWork();
-
-                     // Update the progress bar
-                     mHandler.post(new Runnable() {
-                         public void run() {
-                             mProgress.setProgress(mProgressStatus);
-                         }
-                     });
-                 }
-             }
-
-			private int doWork() {
-				// TODO Auto-generated method stub
-				return 100;
-			}
-         }).start();
-
+		 
 		
 	}
 		}
